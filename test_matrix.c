@@ -2,8 +2,8 @@
  * Homework 5 Tests - Pointer Operations
  * CSE 220 - Spring 2026
  *
- * Name:
- * SBU ID:
+ * Name: Aninda Saprotiv Roy
+ * SBU ID: 116485388
  */
 
 #include <criterion/criterion.h>

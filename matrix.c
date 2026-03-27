@@ -119,14 +119,14 @@ int Multiplication(const int D[6],
                    int A[D[4]][D[5]])
 {
     /* Read all matrix dimensions from D */
-    int mRows = D[0],  mCols = D[1];
-    int nRows = D[2],  nCols = D[3];
-    int aRows = D[4],  aCols = D[5];
+    int mRows = *(D + 0), mCols = *(D + 1);
+    int nRows = *(D + 2), nCols = *(D + 3);
+    int aRows = *(D + 4), aCols = *(D + 5);
 
     /* Clear the result matrix A with zeros */
     for (int i = 0; i < aRows; i++)
         for (int j = 0; j < aCols; j++)
-            A[i][j] = 0;
+            *(*(A + i) + j) = 0;
 
     /* Determine how many rows/cols we can safely write */
     int kLimit    = min(mCols, nRows);   /* shared dimension for dot product */
@@ -138,8 +138,8 @@ int Multiplication(const int D[6],
         for (int j = 0; j < writeCols; j++) {
             int sum = 0;
             for (int k = 0; k < kLimit; k++)
-                sum += M[i][k] * N[k][j];   /* dot product of row i and col j */
-            A[i][j] = sum;
+                sum += (*(*(M + i) + k)) * (*(*(N + k) + j));   /* dot product of row i and col j */
+            *(*(A + i) + j) = sum;
         }
     }
 
